@@ -18,6 +18,28 @@ public class Piece {
     }
 
 
+    public PieceType gettype(){
+
+        return type;
+
+    }
+
+    public PieceColor getColor(){
+
+        return color;
+    }
+
+    public int getx(){
+        return x;
+    }
+    public int gety(){
+        return y;
+    }
+    public void setPosition(int x, int y){
+        
+        this.x=x;
+        this.y=y;
+    }
     
 
 }
