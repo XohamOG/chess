@@ -17,7 +17,6 @@ public class Piece {
 
     }
 
-
     public PieceType gettype(){
 
         return type;
@@ -30,15 +29,22 @@ public class Piece {
     }
 
     public int getx(){
+
         return x;
+
     }
+
     public int gety(){
+
         return y;
+
     }
+
     public void setPosition(int x, int y){
         
         this.x=x;
         this.y=y;
+
     }
 
     public boolean isValidMove(int endX, int endY, Board board) {
