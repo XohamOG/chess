@@ -1,44 +1,37 @@
 package Model;
 
 public class Piece {
-    
-    Boolean health;
+    public static final Piece PAWN = null;
     public PieceType type;
-    private PieceColor color;
-    public int x,y;
+    public PieceColor color;
+    public int x, y;
 
-    public Piece(PieceColor color,PieceType type,int x,int y){
-
+    public Piece(PieceColor color, PieceType type, int x, int y) {
         this.color = color;
         this.type = type;
-        this.health = true;
-        this.x=x;
-        this.y=y;
-
+        this.x = x;
+        this.y = y;
     }
 
-
-    public PieceType gettype(){
-
+    public PieceType getType() {
         return type;
-
     }
 
-    public PieceColor getColor(){
-
+    public PieceColor getColor() {
         return color;
     }
 
-    public int getx(){
+    public int getX() {
         return x;
     }
-    public int gety(){
+
+    public int getY() {
         return y;
     }
-    public void setPosition(int x, int y){
-        
-        this.x=x;
-        this.y=y;
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public boolean isValidMove(int endX, int endY, Board board) {
@@ -60,17 +53,17 @@ public class Piece {
         }
     }
 
-    private boolean isValidKingMove(int endX, int endY, Board board) {
+    public boolean isValidKingMove(int endX, int endY, Board board) {
         int dx = Math.abs(endX - x);
         int dy = Math.abs(endY - y);
         return dx <= 1 && dy <= 1 && (dx + dy > 0);
     }
 
-    private boolean isValidQueenMove(int endX, int endY, Board board) {
+    public boolean isValidQueenMove(int endX, int endY, Board board) {
         return isValidRookMove(endX, endY, board) || isValidBishopMove(endX, endY, board);
     }
 
-    private boolean isValidRookMove(int endX, int endY, Board board) {
+    public boolean isValidRookMove(int endX, int endY, Board board) {
         if (x == endX) {
             for (int i = Math.min(y, endY) + 1; i < Math.max(y, endY); i++) {
                 if (board.getPiece(x, i) != null) return false;
@@ -86,7 +79,7 @@ public class Piece {
         return false;
     }
 
-    private boolean isValidBishopMove(int endX, int endY, Board board) {
+    public boolean isValidBishopMove(int endX, int endY, Board board) {
         if (Math.abs(endX - x) == Math.abs(endY - y)) {
             int dx = (endX - x) > 0 ? 1 : -1;
             int dy = (endY - y) > 0 ? 1 : -1;
@@ -102,27 +95,23 @@ public class Piece {
         return false;
     }
 
-    private boolean isValidKnightMove(int endX, int endY, Board board) {
+    public boolean isValidKnightMove(int endX, int endY, Board board) {
         int dx = Math.abs(endX - x);
         int dy = Math.abs(endY - y);
         return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
     }
 
-    private boolean isValidPawnMove(int endX, int endY, Board board) {
+    public boolean isValidPawnMove(int endX, int endY, Board board) {
         int direction = (color == PieceColor.White) ? -1 : 1;
         if (x + direction == endX && y == endY && board.getPiece(endX, endY) == null) {
-            return true; // Move forward
+            return true;
         }
         if (x + 2 * direction == endX && y == endY && x == (color == PieceColor.White ? 6 : 1) && board.getPiece(endX, endY) == null) {
-            return true; // Initial two-step move
+            return true;
         }
         if (x + direction == endX && Math.abs(endY - y) == 1 && board.getPiece(endX, endY) != null) {
-            return true; // Capture move
+            return true;
         }
         return false;
     }
-
-
-    
-
 }
