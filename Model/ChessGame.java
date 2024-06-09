@@ -11,9 +11,6 @@ public class ChessGame {
     //move method
     public boolean move(int startX, int startY, int endX, int endY) {
         Piece piece = board.getPiece(startX, startY);
-        //extra printed here
-        System.out.println(piece.gettype());
-        System.out.println(piece.getColor());
         if (piece == null|| piece.getColor() != currentTurn) {
             System.out.println("No piece selected.");
             return false;
