@@ -1,7 +1,7 @@
 package Model;
 
 public class ChessGame {
-    private Board board;
+    public Board board;
     private PieceColor currentTurn;
 
     public ChessGame() {
@@ -11,7 +11,11 @@ public class ChessGame {
 
     public boolean move(int startX, int startY, int endX, int endY) {
         Piece piece = board.getPiece(startX, startY);
-        if (piece == null || piece.getColor() != currentTurn) {
+        //extra printed here
+        System.out.println(piece.gettype());
+        System.out.println(piece.getColor());
+        if (piece == null|| piece.getColor() != currentTurn) {
+            System.out.println("No piece selected.");
             return false;
         }
 
